@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CountryDetails</string>
+    <string name="title_activity_country_list">CountryListActivity</string>
+    <string name="not_available">Not available</string>
+</resources>
