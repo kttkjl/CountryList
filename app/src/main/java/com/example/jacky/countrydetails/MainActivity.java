@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Clicked position: " + currClicked);
             switch (currClicked) {
                 case "Asia":
-                    intent.putExtra("countries", (ArrayList<Country>)asia_countries);
+                    intent.putExtra("countries", asia_countries);
                     break;
                 case "Europe":
                     intent.putExtra("countries", europe_countries);

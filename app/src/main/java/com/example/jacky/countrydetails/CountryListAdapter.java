@@ -29,15 +29,8 @@ public class CountryListAdapter extends ArrayAdapter<Country> {
         }
 
         TextView tv_country_name = (TextView) convertView.findViewById(R.id.country_name);
+        tv_country_name.setText(country.getName());
 
-        String string_country_name = country.getName();
-        tv_country_name.setText(string_country_name);
-//        if (string_country_name != null){
-//            tv_country_name.setText(string_country_name);
-//        } else {
-//            tv_country_name.setText("");
-//        }
-        // Return the completed view to render on screen
         return convertView;
     }
 }

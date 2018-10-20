@@ -30,14 +30,14 @@ public class CountryAdapter extends ArrayAdapter<Country> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.country_details, parent, false);
         }
 
-        TextView tvBorders = (TextView) convertView.findViewById(R.id.countryViewBorders);
-        TextView tvCountryName = (TextView) convertView.findViewById(R.id.countryViewName);
+        TextView tvBorders = (TextView) convertView.findViewById(R.id.country_detail_borders);
+        TextView tvCountryName = (TextView) convertView.findViewById(R.id.country_detail_name);
 
         // Populate the data into the template view using the data object
         tvBorders.setText(country.getBorders().toString());
         tvCountryName.setText(country.getName());
 
-        ImageView imgOnePhoto = (ImageView) convertView.findViewById(R.id.countryViewImage);
+        ImageView imgOnePhoto = (ImageView) convertView.findViewById(R.id.country_detail_image);
 
         // Return the completed view to render on screen
         return convertView;

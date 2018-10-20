@@ -24,7 +24,7 @@ public class RegionAdapter extends ArrayAdapter<String> {
         final Activity activity = (Activity) _context;
         // Get the data item for this position
         String region = getItem(position);
-//        System.out.println("==============================CURRENT REGION : " + region);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.regions_list, parent, false);
@@ -35,6 +35,5 @@ public class RegionAdapter extends ArrayAdapter<String> {
         // Return the completed view to render on screen
         return convertView;
     }
-
 }
 
