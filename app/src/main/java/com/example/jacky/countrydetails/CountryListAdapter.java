@@ -22,10 +22,9 @@ public class CountryListAdapter extends ArrayAdapter<Country> {
         final Activity activity = (Activity) _context;
         // Get the data item for this position
         Country country = getItem(position);
-//        System.out.println("==============================CURRENT REGION : " + region);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.countries_list, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.country_list, parent, false);
         }
 
         TextView tv_country_name = (TextView) convertView.findViewById(R.id.country_name);

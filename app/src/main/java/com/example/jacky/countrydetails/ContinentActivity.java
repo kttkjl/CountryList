@@ -3,8 +3,8 @@ package com.example.jacky.countrydetails;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +19,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class ContinentActivity extends AppCompatActivity {
 
-    private String TAG = MainActivity.class.getSimpleName();
+    private String TAG = ContinentActivity.class.getSimpleName();
     private ProgressDialog pDialog;
     private String[] regions = {"Asia", "Europe", "Africa", "Oceania", "Americas", "Polar", "Others"};
     private ArrayList<Country> asia_countries;
@@ -34,20 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lv_regions;
     // URL to get contacts JSON
-    private static String COUNTRIES_ALL_URL =
-            "http://restcountries.eu/rest/v2/all?fields=name;capital;region;population;area;borders;flag;alpha3Code";
-    private ArrayList<Country> countries;
+    private static String COUNTRIES_ALL_URL = "http://restcountries.eu/rest/v2/all?fields=name;capital;region;population;area;borders;flag;alpha3Code";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         // Init array list of countries
-        countries = new ArrayList<Country>();
         asia_countries= new ArrayList<Country>();
         africa_countries = new ArrayList<Country>();
         americas_countries = new ArrayList<Country>();
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             // Adapter view just KNOWS which thing is in the category
 
-            Intent intent = new Intent(MainActivity.this, CountryListActivity.class);
+            Intent intent = new Intent(ContinentActivity.this, CountryListActivity.class);
             // Depending on what was clicked, bring that out
             String currClicked = ((TextView) view.findViewById(R.id.region_name)).getText().toString();
             System.out.println("Clicked position: " + currClicked);
@@ -98,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -110,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
-            pDialog = new ProgressDialog(MainActivity.this);
+            pDialog = new ProgressDialog(ContinentActivity.this);
             pDialog.setMessage("Loading...");
             pDialog.setCancelable(false);
             pDialog.show();
@@ -121,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(COUNTRIES_ALL_URL);
-//            Log.e(TAG, "Response from url: " + jsonStr);
+            Log.e(TAG, "Response from url: " + jsonStr);
             String [] detail_checklist = {"flag", "name", "alpha3Code", "capital", "region", "population", "area", "borders"};
             if (jsonStr != null) {
                 try {
@@ -135,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                         String name = c.getString("name");
                         String alpha3Code = c.getString("alpha3Code");
                         String capital = c.getString("capital");
-
                         String population = c.getString("population");
 
                         double area;
@@ -174,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
                         country.setArea(area);
                         country.setBorders(borders);
 
-                        countries.add(country);
                         // adding country to country list
                         switch (region) {
                             case "Asia":
@@ -236,8 +230,7 @@ public class MainActivity extends AppCompatActivity {
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
-//            CountryAdapter country_adapter = new CountryAdapter(MainActivity.this, countries);
-            RegionAdapter region_adapter = new RegionAdapter(MainActivity.this, regions);
+            RegionAdapter region_adapter = new RegionAdapter(ContinentActivity.this, regions);
 
             // Attach the adapter to a ListView
             lv_regions.setAdapter(region_adapter);

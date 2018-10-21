@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ContinentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".CountryListActivity"
-        android:label="@string/title_activity_country_list"
-        android:theme="@style/AppTheme"></activity>
-
+            android:name=".CountryListActivity"
+            android:label="@string/title_activity_country_list"
+            android:parentActivityName=".ContinentActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CountryDetailActivity"
             android:label="@string/title_activity_country_detail"
-            android:theme="@style/AppTheme"></activity>
+            android:parentActivityName=".CountryListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MyDeviceActivity"
+            android:label="@string/my_device_name"
+            android:parentActivityName=".CountryDetailActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
